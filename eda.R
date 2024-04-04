@@ -29,7 +29,7 @@ head(df)
 # import ggplot library
 install.packages("tidyverse")
 library(ggplot2)
-ggplot(df, aes(AveragePrice, Total.Volume, colour = type)) + 
+ggplot(df, aes(AveragePrice, Total.Volume, colour = type))+ 
   geom_point()+
   ggtitle("Volume against price and type")+
   xlab("Average Price")+
