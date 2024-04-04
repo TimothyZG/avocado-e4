@@ -15,8 +15,10 @@ df$type = factor(df$type)
 df$region = factor(df$region)
 df$year = factor(df$year)
 
+response = df$Total.Volume
+
 # Feature transformation (date -> month) 
-install.packages("lubridate")
+# install.packages("lubridate")
 library(lubridate)
 df$Date <- ymd(df$Date)
 # Extract the month number
@@ -27,7 +29,7 @@ head(df)
 
 # EDA
 # import ggplot library
-install.packages("tidyverse")
+# install.packages("tidyverse")
 library(ggplot2)
 ggplot(df, aes(AveragePrice, Total.Volume, colour = type)) + 
   geom_point()+
@@ -83,13 +85,13 @@ df_filtered_o <- subset(df_filtered, type %in% "organic")
 
 # Once removing these results, the results become more consistent
 
-ggplot(subset(df_filtered, type == "organic"), aes(year, Total.Volume, colour = season)) +
+ggplot(subset(df_filtered, type == "organic"), aes(year, Total.Volume)) +
   geom_point() +
   ggtitle("Volume against year for filtered (organic)") +
   xlab("Year sold") +
   ylab("Total Volume Sold")
 
-ggplot(subset(df_filtered, type == "conventional"), aes(year, Total.Volume, colour = season)) +
+ggplot(subset(df_filtered, type == "conventional"), aes(year, Total.Volume)) +
   geom_point() +
   ggtitle("Volume against year for filtered (conventional)") +
   xlab("Year sold") +
@@ -163,5 +165,3 @@ ggplot(model_o, aes(sample = .stdresid)) +
 
 # seperating the data makes both the conventional, and organic data sets look
 # much more normal for both the residual vs fitted and the qq plots
-
-
